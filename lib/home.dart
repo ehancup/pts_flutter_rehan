@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pts_flutter/detail.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pts_flutter/cart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedindex = 0;
   int selectedItem = 0;
+
   @override
   Widget build(BuildContext context) {
     Widget kategori(int index, String title) {
@@ -49,15 +51,24 @@ class _HomePageState extends State<HomePage> {
 
     Widget barang(String photo, String title, String harga) {
       return GestureDetector(
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  DetailPage(title: title,picture: photo,price: harga,) )),
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailPage(
+                      title: title,
+                      picture: photo,
+                      price: harga,
+                    ))),
         child: Container(
           margin: const EdgeInsets.only(bottom: 24),
           width: 185,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
                 width: 185,
                 height: 185,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
                 child: Image.asset(
                   'assets/$photo',
                   fit: BoxFit.cover,
@@ -117,7 +128,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               width: 24,
             ),
-            const Icon(LucideIcons.shoppingCart),
+            GestureDetector(child: const Icon(LucideIcons.shoppingCart), onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage())),),
             const SizedBox(
               width: 24,
             ),

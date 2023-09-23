@@ -1,12 +1,17 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pts_flutter/popup.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pts_flutter/cart.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key, required this.title, required this.picture, required this.price});
+  const DetailPage(
+      {super.key,
+      required this.title,
+      required this.picture,
+      required this.price});
 
   final String title;
   final String picture;
@@ -54,18 +59,17 @@ class _DetailPageState extends State<DetailPage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
+          centerTitle: true,
           surfaceTintColor: const Color(0xff00b41f),
           leading: BackButton(
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Center(
-            child: Text(
-              'Detail Produk',
-              style: GoogleFonts.inter(
-                  color: const Color(0xff292d32),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
-            ),
+          title: Text(
+            'Detail Produk',
+            style: GoogleFonts.inter(
+                color: const Color(0xff292d32),
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
           ),
           actions: [
             GestureDetector(
@@ -214,7 +218,12 @@ class _DetailPageState extends State<DetailPage> {
                         borderRadius: BorderRadius.circular(8),
                         color: const Color(0xff00b41f)),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) => popup(
+                                context,
+                                '${widget.title} berhasil ditambahkan',
+                                const CartPage())),
                         child: Text(
                           'Tambah Keranjang',
                           style: GoogleFonts.inter(
