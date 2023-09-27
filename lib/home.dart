@@ -5,6 +5,7 @@ import 'package:pts_flutter/detail.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pts_flutter/cart.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,12 +50,13 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget barang(String photo, String title, String harga) {
+    Widget barang(int index, String photo, String title, int harga) {
       return GestureDetector(
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => DetailPage(
+                  index:index,
                       title: title,
                       picture: photo,
                       price: harga,
@@ -87,7 +89,7 @@ class _HomePageState extends State<HomePage> {
               height: 12,
             ),
             Text(
-              'Rp$harga',
+              NumberFormat.currency(locale: 'id_ID', symbol: 'Rp').format(harga),
               style: GoogleFonts.inter(
                   color: const Color(0xff292d32),
                   fontSize: 16,
@@ -218,14 +220,14 @@ class _HomePageState extends State<HomePage> {
                 // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
 
                 children: <Widget>[
-                  barang('1.png', 'Batik Pria Lengan Panjang', '199.000'),
-                  barang('2.png', 'New Balance 992 Grey Original', '1.240.000'),
-                  barang('3.png', 'Skinny Jeans Dark Blue Wanita', '379.000'),
-                  barang('4.png', 'Kacamata Baca Anti Radiasi Blue Ray',
-                      '125.000'),
-                  barang('5.png', 'Kemeja Pria Polos Lengan Pendek Oxford',
-                      '199.000'),
-                  barang('6.png', 'Human Greatness Hoodie Hitam', '299.000'),
+                  barang(0,'1.png', 'Batik Pria Lengan Panjang', 199000),
+                  barang(1, '2.png', 'New Balance 992 Grey Original', 1240000),
+                  barang(2,'3.png', 'Skinny Jeans Dark Blue Wanita', 379000),
+                  barang(3,'4.png', 'Kacamata Baca Anti Radiasi Blue Ray',
+                      125000),
+                  barang(4,'5.png', 'Kemeja Pria Polos Lengan Pendek Oxford',
+                      199000),
+                  barang(5,'6.png', 'Human Greatness Hoodie Hitam', 299000),
                 ],
               ),
             )

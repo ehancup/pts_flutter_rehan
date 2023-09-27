@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pts_flutter/home.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import './modal/product_modal.dart';
 void main() {
-  runApp(const MyApp());
+  runApp( ProviderScope(
+    child: const MyApp(),
+  ));
 }
+
+final cartState = StateProvider<List<Cart>>((ref) => []);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
